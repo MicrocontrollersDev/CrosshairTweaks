@@ -5,6 +5,7 @@ import dev.isxander.yacl3.api.ConfigCategory;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.YetAnotherConfigLib;
+import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import dev.isxander.yacl3.config.ConfigEntry;
 import dev.isxander.yacl3.config.GsonConfigInstance;
 import net.fabricmc.loader.api.FabricLoader;
@@ -29,21 +30,24 @@ public class CrosshairTweaksConfig {
         return YetAnotherConfigLib.create(configInstance, ((defaults, config, builder) -> builder
                 .title(Text.literal("Crosshair Tweaks"))
                 .category(ConfigCategory.createBuilder()
-                        .name(Text.literal("Trader Notifications"))
+                        .name(Text.literal("Crosshair Tweaks"))
                         .option(Option.createBuilder(boolean.class)
                                 .name(Text.literal("Hide in Containers"))
-                                .description((OptionDescription) Text.literal("Hides crosshair when a container is opened. Great for containers with translucent backgrounds."))
-                                .binding(defaults.hideInContainers, () -> config.hideInContainers, v -> config.hideInContainers = v)
+                                .description(OptionDescription.of(Text.of("Hides crosshair when a container is opened. Great for containers with translucent backgrounds.")))
+                                .binding(true, () -> hideInContainers, newVal -> hideInContainers = newVal)
+                                .controller(TickBoxControllerBuilder::create)
                                 .build())
                         .option(Option.createBuilder(boolean.class)
                                 .name(Text.literal("Show in Third Person"))
-                                .description((OptionDescription) Text.literal("Shows the crosshair when in third person."))
-                                .binding(defaults.showInPerspective, () -> config.showInPerspective, v -> config.showInPerspective = v)
+                                .description(OptionDescription.of(Text.of("Shows the crosshair when in third person.")))
+                                .binding(true, () -> showInPerspective, newVal -> showInPerspective = newVal)
+                                .controller(TickBoxControllerBuilder::create)
                                 .build())
                         .option(Option.createBuilder(boolean.class)
                                 .name(Text.literal("Remove Blending"))
-                                .description((OptionDescription) Text.literal("Removes color blending on the crosshair, making it always white."))
-                                .binding(defaults.removeBlending, () -> config.removeBlending, v -> config.removeBlending = v)
+                                .description(OptionDescription.of(Text.of("Removes color blending on the crosshair, making it always white.")))
+                                .binding(false, () -> removeBlending, newVal -> removeBlending = newVal)
+                                .controller(TickBoxControllerBuilder::create)
                                 .build())
                         .build())
         )).generateScreen(parent);

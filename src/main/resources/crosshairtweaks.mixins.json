@@ -1,9 +1,9 @@
 {
 	"required": true,
-	"package": "com.example.mixin.client",
+	"package": "dev.microcontrollers.crosshairtweaks.mixin",
 	"compatibilityLevel": "JAVA_17",
-	"client": [
-		"ExampleClientMixin"
+	"mixins": [
+      "InGameHudMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

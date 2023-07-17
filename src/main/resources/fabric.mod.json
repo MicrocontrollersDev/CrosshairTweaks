@@ -9,14 +9,15 @@
 	],
 	"contact": {
 		"homepage": "https://github.com/MicrocontrollersDev",
-		"sources": "https://github.com/MicrocontrollersDev/CrosshairTweaks"
+		"sources": "https://github.com/MicrocontrollersDev/CrosshairTweaks",
+		"issues": "https://github.com/MicrocontrollersDev/CrosshairTweaks/issues"
 	},
 	"license": "LGPLV3",
 	"icon": "assets/crosshairtweaks/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "dev.microcontrollers.crosshairtweaks.CrosshairTweaks"
+			"dev.microcontrollers.crosshairtweaks.CrosshairTweaks"
 		],
 		"modmenu": [
 			"dev.microcontrollers.crosshairtweaks.config.ModMenuIntegration"

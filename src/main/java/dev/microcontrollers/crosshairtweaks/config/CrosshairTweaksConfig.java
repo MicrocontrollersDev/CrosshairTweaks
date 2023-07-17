@@ -46,7 +46,6 @@ public class CrosshairTweaksConfig {
                                 .binding(defaults.removeBlending, () -> config.removeBlending, v -> config.removeBlending = v)
                                 .build())
                         .build())
-
         )).generateScreen(parent);
     }
 }

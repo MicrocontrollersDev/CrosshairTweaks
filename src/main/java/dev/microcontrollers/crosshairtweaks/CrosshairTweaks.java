@@ -7,6 +7,6 @@ public class CrosshairTweaks implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		CrosshairTweaksConfig.configInstance.load();
+		CrosshairTweaksConfig.INSTANCE.load();
 	}
 }

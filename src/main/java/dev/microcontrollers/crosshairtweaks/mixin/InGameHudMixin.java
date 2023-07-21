@@ -16,18 +16,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class InGameHudMixin {
 	@Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
 	private void isInContainer(DrawContext context, CallbackInfo ci) {
-		if (MinecraftClient.getInstance().currentScreen != null && CrosshairTweaksConfig.hideInContainers) ci.cancel();
+		if (MinecraftClient.getInstance().currentScreen != null && CrosshairTweaksConfig.INSTANCE.getConfig().hideInContainers) ci.cancel();
 	}
 
 	@ModifyExpressionValue(method = "renderCrosshair", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/Perspective;isFirstPerson()Z"))
 	public boolean removeFirstPersonCheck(boolean original) {
-		if (CrosshairTweaksConfig.showInPerspective) return true;
+		if (CrosshairTweaksConfig.INSTANCE.getConfig().showInPerspective) return true;
 		else return original;
 	}
 
 	@WrapWithCondition(method = "renderCrosshair", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;blendFuncSeparate(Lcom/mojang/blaze3d/platform/GlStateManager$SrcFactor;Lcom/mojang/blaze3d/platform/GlStateManager$DstFactor;Lcom/mojang/blaze3d/platform/GlStateManager$SrcFactor;Lcom/mojang/blaze3d/platform/GlStateManager$DstFactor;)V"))
 	public boolean removeBlending(GlStateManager.SrcFactor srcFactor, GlStateManager.DstFactor dstFactor, GlStateManager.SrcFactor srcAlpha, GlStateManager.DstFactor dstAlpha) {
-		return !CrosshairTweaksConfig.removeBlending;
+		return !CrosshairTweaksConfig.INSTANCE.getConfig().removeBlending;
 	}
 
 }
